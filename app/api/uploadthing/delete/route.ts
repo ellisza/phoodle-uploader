@@ -1,17 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/utils/authOptions";
 import { utapi } from "../core";
 
 export async function DELETE(req: NextRequest) {
   try {
-    // Verify authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.jwt) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    
     // Get file key from request
     const { fileUrl } = await req.json();
 
